@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Crie sua lista
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title class="ion-justify-content-center" size="large">
+          <div class="ion-text-center">Crie sua Lista</div>,
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+
+<ion-list>
+
+  <ion-item *ngFor="Let item of item">
+    <ion-label *ngIf="item.nomeItem != undefined">{{item.nomeItem}}</ion-label>
+    <ion-label *ngIf="item.nomeItem === undefined">Item sem nome</ion-label>
+
+    <ion-toggle slot="end"></ion-toggle>
+
+  </ion-item>
+
+</ion-list>
+
+
+
+
+<ion-item>
+  
+  <ion-input #refIonInput (keyup)="filterList($event.target.value)" type="text" placeholder="Digite aqui" [(ngModel)]="item"></ion-input>
+    <span slot="start" (click)="refIonInput.value = '' ">
+      <ion-icon size="large" name="close-circle-outline"></ion-icon>
+    </span>
+  <ion-button clear item-right (click)="criar(item)" expand="block" color="light">
+      <ion-icon name="add" slot="end"></ion-icon>
+      Add 
+  </ion-button>
+  
+</ion-item>
+
+
+
+
+  <ion-list>
+    <ion-item *ngFor="let item of produtodb">
+      
+      <ion-label>
+      {{item.nome}}
+      </ion-label>
+        <ion-button (click)="apagar(item.id)" expand="block" color="light">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        
+    </ion-item>
+  
+  
+  
+  </ion-list>
+
+
+
+
+</ion-content>
+
